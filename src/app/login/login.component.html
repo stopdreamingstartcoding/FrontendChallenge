@@ -1,0 +1,30 @@
+<div *ngIf="isLogged;then canLogout else neededLogin"></div>
+
+<ng-template #neededLogin>
+<div>
+   <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+     <div>
+       <input type = "text" class = "myInput" name = "username" placeholder = "username" formControlName = "userName">
+       <div *ngIf="userName.errors?.minlength"> At least 5 characters long.</div>
+       <div *ngIf="userName.errors?.required">  User name required.</div>
+     </div>
+     <div>
+        <input type = "password" class = "myInput" name = "passwd"  placeholder = "passwd" formControlName = "pass">
+        <div *ngIf="pass.errors?.required">Password required.</div>
+        <div *ngIf="pass.errors?.pattern">8 characters long, at least one small letter, at least one capital letter, at least one number.</div>
+      </div>
+      <div>
+        <input type = "submit" [disabled] = "!formdata.valid" class = "btn btn-primary myInput" value = "Log In">
+      </div>
+   </form>
+</div>
+</ng-template>
+
+<ng-template #canLogout>
+  <div>
+    <button (click)="logOut()" class = "btn btn-primary myInput"> LogOut </button>
+  </div>
+  <div>
+    <button (click)="goToPosts()" class = "btn btn-primary myInput"> Go to posts </button>
+  </div>
+</ng-template>

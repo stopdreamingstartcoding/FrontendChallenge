@@ -1,0 +1,11 @@
+<div class="menuContainer">
+  <button (click)="logOut()" class="btn btn-primary logoutBtn"> LogOut </button>
+  <input id="myInput" type="text" placeholder="search" class="searchFld">
+</div>
+<div>
+  <div *ngFor="let post of posts" class="postSerchHelper">
+      Id: {{post.id}}<br>
+      UserId: {{post.userId}}<br>
+      Title: <a routerLink="/post/{{post.id}}">{{post.title}}</a>
+  </div>
+</div>
